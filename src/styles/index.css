@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply transition-colors duration-300 antialiased font-sans overflow-x-hidden;
+    background-color: #0EA5E9; /* Updated body background */
+    color: #092763;
+  }
+
+  body.dark {
+    background-color: #020b1e;
+    color: #EEF4FA;
+  }
+
+  /* Vibrant Yellow (#FFF44F) highlight selection in light mode */
+  ::selection {
+    background-color: #FFF44F;
+    color: #092763;
+  }
+
+  body.dark ::selection {
+    @apply bg-accent-cyan/30 text-accent-cyan;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-primary/20 hover:bg-primary/40 dark:bg-accent-cyan/10 dark:hover:bg-accent-cyan/35 transition-colors;
+}
+
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(9, 39, 99, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(9, 39, 99, 0.05) 1px, transparent 1px);
+}
+
+.dark .cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+}
+
+.mouse-glow-layer {
+  background: radial-gradient(
+    250px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(0, 242, 254, 0.08),
+    transparent 80%
+  );
+}
+
+.dark .mouse-glow-layer {
+  background: radial-gradient(
+    250px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(0, 242, 254, 0.12),
+    transparent 80%
+  );
+}
+
+.terminal-crt {
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-crt::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
+  background-size: 100% 3px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.cyber-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.5), 0 0 20px rgba(0, 242, 254, 0.2);
+}
+
+.cyber-glow-primary {
+  text-shadow: 0 0 12px rgba(9, 39, 99, 0.4), 0 0 24px rgba(9, 39, 99, 0.2);
+}
+
+.cyber-dots {
+  background-image: radial-gradient(rgba(9, 39, 99, 0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+.dark .cyber-dots {
+  background-image: radial-gradient(rgba(0, 242, 254, 0.05) 1px, transparent 0);
+  background-size: 20px 20px;
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <style>
+    /* Default colors for standard/light browser tabs */
+    .logo-base { fill: #0d5c75; } /* Your main teal/blue color */
+    .logo-accent { fill: #f37023; } /* Rocket flame / orange accent */
+
+    /* Automatic switch when the user's system is in Dark Mode */
+    @media (prefers-color-scheme: dark) {
+      .logo-base { fill: #38bdf8; } /* Lighter, glowing cyan for dark tabs */
+      .logo-accent { fill: #ff9f43; }
+    }
+  </style>
+
+  <!-- Apply the classes to your logo paths -->
+  <path class="logo-base" d="..." />
+  <path class="logo-accent" d="..." />
+</svg>
