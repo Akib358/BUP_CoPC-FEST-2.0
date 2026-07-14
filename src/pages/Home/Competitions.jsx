@@ -1,12 +1,37 @@
 import React from 'react';
 import Card3D from '../../components/ui/Card3D';
-import { Code, Trophy, Shield, Cpu, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+// Custom Tech Vector Icons
+const IupcIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+    <polyline points="16 18 22 12 16 6" />
+    <polyline points="8 6 2 12 8 18" />
+    <line x1="14" y1="4" x2="10" y2="20" />
+  </svg>
+);
+
+const HackathonIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <polyline points="7 9 10 12 7 15" />
+    <line x1="12" y1="15" x2="16" y2="15" />
+  </svg>
+);
+
+const CtfIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7s0 6 8 10z" />
+    <rect x="9" y="11" width="6" height="5" rx="1" />
+    <path d="M10.5 11V9a1.5 1.5 0 0 1 3 0v2" />
+  </svg>
+);
 
 const TRACKS = [
   {
     id: 'iupc',
-    icon: Code,
+    icon: IupcIcon, // custom code icon
     title: 'IUPC',
     subtitle: 'Programming Contest',
     desc: 'Solve real-world algorithms in a fast-paced 5-hour competitive coding bracket. Battle for a share of 250K BDT prize pool.',
@@ -14,7 +39,7 @@ const TRACKS = [
   },
   {
     id: 'hackathon',
-    icon: Cpu,
+    icon: HackathonIcon, // custom terminal console icon
     title: 'Hackathon',
     subtitle: 'Innovation Sprint',
     desc: 'Pitch, build, and deploy technical systems in a 24-hour innovation challenge covering Web, App, AI & hardware projects.',
@@ -22,7 +47,7 @@ const TRACKS = [
   },
   {
     id: 'ctf',
-    icon: Shield,
+    icon: CtfIcon, // custom encrypted shield icon
     title: 'CTF Contest',
     subtitle: 'Capture the Flag',
     desc: 'A Jeopardy-style cybersecurity challenge. Exploit web-apps, perform digital forensics, and decrypt flags on system files.',
@@ -74,7 +99,7 @@ export default function Competitions({ setActivePage }) {
                   <div className="p-8 space-y-6 flex-1">
                     <div className="flex justify-between items-start">
                       <div className="p-3.5 bg-primary/5 dark:bg-accent-cyan/10 border border-primary/10 dark:border-accent-cyan/20 text-accent-cyan rounded-md">
-                        <Icon className="w-6 h-6" />
+                        <Icon />
                       </div>
                       <span className="font-mono text-[10px] tracking-wider uppercase border border-bgLight-border dark:border-bgDark-border px-2 py-1 bg-bgLight dark:bg-bgDark text-primary/60 dark:text-white/50 rounded-sm">
                         {track.tag}

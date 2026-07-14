@@ -13,9 +13,33 @@ import AdminPortal from './pages/AdminPortal';
 import FAQSection from './pages/Home/FAQSection';
 import { ThemeProvider } from './context/ThemeContext';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Terminal, X, Code, Cpu, Shield } from 'lucide-react';
+import { Terminal, X } from 'lucide-react';
 
-// Pre-populated realistic initial mock database for activity feeds & stats
+// Custom Tech Vector Icons
+const IupcIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <polyline points="16 18 22 12 16 6" />
+    <polyline points="8 6 2 12 8 18" />
+    <line x1="14" y1="4" x2="10" y2="20" />
+  </svg>
+);
+
+const HackathonIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <polyline points="7 9 10 12 7 15" />
+    <line x1="12" y1="15" x2="16" y2="15" />
+  </svg>
+);
+
+const CtfIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7s0 6 8 10z" />
+    <rect x="9" y="11" width="6" height="5" rx="1" />
+    <path d="M10.5 11V9a1.5 1.5 0 0 1 3 0v2" />
+  </svg>
+);
+
 const INITIAL_REGISTRATIONS = [
   { id: 101, fullName: "Abrar Shahriar", email: "abrar@buet.ac.bd", phone: "01711223344", university: "BUET", department: "CSE", studentId: "202214001", teamName: "CodeCrafters", track: "iupc", member2Name: "Tahmid Hasan", member3Name: "Nabil Ahmed", paymentStatus: "Approved" },
   { id: 102, fullName: "Farzana Yasmin", email: "farzana@bup.edu.bd", phone: "01822334455", university: "BUP", department: "ICT", studentId: "24107621", teamName: "ByteMe", track: "hackathon", member2Name: "Sadman Sakib", member3Name: "Zarif Rahman", paymentStatus: "Pending" },
@@ -26,11 +50,10 @@ const INITIAL_REGISTRATIONS = [
 export default function App() {
   const [activePage, setActivePage] = useState('home');
   const [registrations, setRegistrations] = useState(INITIAL_REGISTRATIONS);
-  const [currentUser, setCurrentUser] = useState(null); // stores active user object or { role: 'admin' }
+  const [currentUser, setCurrentUser] = useState(null); 
   const [showTrackModal, setShowTrackModal] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState('iupc');
 
-  // Trigger Track selection window on registration click
   const triggerRegistrationFlow = () => {
     setShowTrackModal(true);
   };
@@ -103,7 +126,6 @@ export default function App() {
         <Footer setActivePage={setActivePage} />
       </div>
 
-      {/* Modern Cyber Track Selector Modal */}
       <AnimatePresence>
         {showTrackModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bgDark/80 backdrop-blur-md">
@@ -130,9 +152,9 @@ export default function App() {
 
               <div className="grid grid-cols-1 gap-4">
                 {[
-                  { id: 'iupc', icon: Code, title: 'IUPC Contest', desc: 'Inter-University competitive programming sprint.' },
-                  { id: 'hackathon', icon: Cpu, title: '24H Hackathon', desc: 'Hardware, IoT, AI, and Software prototype deployment.' },
-                  { id: 'ctf', icon: Shield, title: 'CTF Championship', desc: 'Jeopardy-style cybersecurity flag capture.' }
+                  { id: 'iupc', icon: IupcIcon, title: 'IUPC Contest', desc: 'Inter-University competitive programming sprint.' },
+                  { id: 'hackathon', icon: HackathonIcon, title: '24H Hackathon', desc: 'Hardware, IoT, AI, and Software prototype deployment.' },
+                  { id: 'ctf', icon: CtfIcon, title: 'CTF Championship', desc: 'Jeopardy-style cybersecurity flag capture.' }
                 ].map((track) => {
                   const Icon = track.icon;
                   return (
@@ -142,7 +164,7 @@ export default function App() {
                       className="flex items-center space-x-4 p-4 rounded border border-white/10 hover:border-accent-cyan hover:bg-accent-cyan/5 text-left transition-all"
                     >
                       <div className="p-3 bg-white/5 rounded text-accent-cyan">
-                        <Icon className="w-5 h-5" />
+                        <Icon />
                       </div>
                       <div>
                         <h4 className="font-sans font-bold text-sm text-white">{track.title}</h4>
